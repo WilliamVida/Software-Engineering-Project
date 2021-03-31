@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @aircraft.name %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @aircraft.role %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @aircraft.country %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @aircraft.year %>
+</p>
+
+<%= link_to 'Edit', edit_aircraft_path(@aircraft) %> |
+<!-- <%= link_to 'Delete', aircraft_path(@aircraft), 'data-method' => 'delete', 'data-confirm' => 'Are you sure?'%> | -->
+<%= link_to 'Back', aircrafts_path %>

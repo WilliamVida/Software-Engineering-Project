@@ -5,3 +5,16 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+aircrafts = [
+    {:name => "Supermarine Spitfire", :role => "Fighter", :country => "United Kingdom", :year => "1938"},
+    {:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany", :year => "1937"},
+    {:name => "Hawker Hurricane", :role => "Fighter", :country => "United Kingdom", :year => "1937"},
+    {:name => "Messerschmitt Me 262", :role => "Fighter", :country => "Germany", :year => "1944"},
+    {:name => "Boeing B-17", :role => "Bomber", :country => "United States", :year => "1938"}, 
+    {:name => "Boeing B-29", :role => "Bomber", :country => "United States", :year => "1944"},
+]
+
+aircrafts.each do |aircraft|
+    Aircraft.create!(aircraft)
+end
