@@ -11,8 +11,12 @@ aircrafts = [
     {:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany", :year => "1937"},
     {:name => "Hawker Hurricane", :role => "Fighter", :country => "United Kingdom", :year => "1937"},
     {:name => "Messerschmitt Me 262", :role => "Fighter", :country => "Germany", :year => "1944"},
-    {:name => "Boeing B-17", :role => "Bomber", :country => "United States", :year => "1938"}, 
-    {:name => "Boeing B-29", :role => "Bomber", :country => "United States", :year => "1944"},
+    {:name => "Boeing B-17", :role => "Heavy Bomber", :country => "United States", :year => "1938"}, 
+    {:name => "Boeing B-29", :role => "Heavy Bomber", :country => "United States", :year => "1944"},
+    {:name => "Junkers Ju 87", :role => "Dive Bomber", :country => "Germany", :year => "1936"},
+    {:name => "Mitsubishi A6M Zero", :role => "Fighter", :country => "Japan", :year => "1940"},
+    {:name => "Focke-Wulf Fw 190", :role => "Fighter", :country => "Germany", :year => "1941"},
+    {:name => "North American P-51 Mustang", :role => "Fighter", :country => "United States", :year => "1942"},
 ]
 
 aircrafts.each do |aircraft|
