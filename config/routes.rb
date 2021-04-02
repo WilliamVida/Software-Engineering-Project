@@ -55,4 +55,5 @@ Rails.application.routes.draw do
   #   end
     resources :aircrafts
     root :to => redirect('/aircrafts')
+    get '/aircrafts/same_country/:id', to: 'aircrafts#same_country', as: :same_country
 end

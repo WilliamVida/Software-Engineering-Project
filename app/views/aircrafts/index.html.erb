@@ -2,7 +2,18 @@
 
 <h1>List of Aircraft</h1>
 
+<p>There is/are <b><%=@aircrafts.count %></b> aircraft currently shown.</p>
 
+<%= form_tag aircrafts_path, method: :get, id: 'ratings_form' do %>
+  Include:
+  <% @all_roles.each do |role| %>
+    <div class="form-check  form-check-inline">
+      <%= label_tag "roles[#{role}]", role, class: 'form-check-label' %>
+      <%= check_box_tag "roles[#{role}]", "1",  @selected_roles.include?(role), class: 'form-check-input' %>
+    </div>
+  <% end %>
+  <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
+<% end %>
 
 <table class="table table-striped col-md-12" id="aircrafts">
   <thead>

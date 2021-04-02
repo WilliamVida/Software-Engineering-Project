@@ -14,13 +14,19 @@ module NavigationHelpers
     case page_name
 
     when /^the home\s?page$/
-      '/'
+      '/aircrafts'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+        
+    when /^.*the edit page for "(.+)"$/ then edit_aircraft_path(Aircraft.find_by_name($1))
+        
+    when /^.*the details page for "(.+)"$/ then aircraft_path(Aircraft.find_by_name($1))
+
+    when /^.*the aircraft developed by the same country page for "(.+)"$/ then same_country_path(Aircraft.find_by_name($1).id)
 
     else
       begin

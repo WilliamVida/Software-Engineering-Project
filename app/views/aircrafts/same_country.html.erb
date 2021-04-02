@@ -1,0 +1,32 @@
+<h2>Aircraft developed by <%= @aircraft.find(params[:id]).country %></h2>
+
+<table class="table table-striped col-md-12" id="aircrafts">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Country</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @aircraft.each do |aircraft| %>
+      <tr>
+        <td>
+          <%= aircraft.name %>
+        </td>
+        <td>
+          <%= aircraft.role %>
+        </td>
+        <td>
+          <%= aircraft.country %>
+        </td>
+        <td>
+          <%= aircraft.year %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Aircraft List', aircrafts_path, :class => 'btn btn-primary col-2' %>
