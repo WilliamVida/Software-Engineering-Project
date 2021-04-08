@@ -4,24 +4,24 @@
 
 <p>There is/are <b><%=@aircrafts.count %></b> aircraft currently shown.</p>
 
-<%= form_tag aircrafts_path, method: :get, id: 'ratings_form' do %>
+<%= form_tag aircrafts_path, method: :get, id: 'roles_form' do %>
   Include:
   <% @all_roles.each do |role| %>
     <div class="form-check  form-check-inline">
       <%= label_tag "roles[#{role}]", role, class: 'form-check-label' %>
-      <%= check_box_tag "roles[#{role}]", "1",  @selected_roles.include?(role), class: 'form-check-input' %>
+      <%= check_box_tag "roles[#{role}]", "1",  @selected_roles.include?(role), :id => "roles_#{role}", class: 'form-check-input' %>
     </div>
   <% end %>
-  <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
+  <%= submit_tag 'Refresh', id: 'roles_submit', class: 'btn btn-primary' %>
 <% end %>
 
 <table class="table table-striped col-md-12" id="aircrafts">
   <thead>
     <tr>
-      <th class="<%=@name_header%>"><%= link_to "Name", aircrafts_path(:sort => "name"), :id => 'name_header' %></th>
-      <th class="<%=@role_header%>"><%= link_to "Role", aircrafts_path(:sort => "role"), :id => 'role_header' %></th>
-      <th class="<%=@country_header%>"><%= link_to "Country", aircrafts_path(:sort => "country"), :id => 'country_header' %></th>
-      <th class="<%=@year_header%>"><%= link_to "Year", aircrafts_path(:sort => "year"), :id => 'year_header' %></th>
+      <th class="<%=@name_header%>"><%= link_to "Name", aircrafts_path(:sort => "name", :roles => @selected_roles), :id => 'name_header' %></th>
+      <th class="<%=@role_header%>"><%= link_to "Role", aircrafts_path(:sort => "role", :roles => @selected_roles), :id => 'role_header' %></th>
+      <th class="<%=@country_header%>"><%= link_to "Country", aircrafts_path(:sort => "country", :roles => @selected_roles), :id => 'country_header' %></th>
+      <th class="<%=@year_header%>"><%= link_to "Year", aircrafts_path(:sort => "year", :roles => @selected_roles), :id => 'year_header' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

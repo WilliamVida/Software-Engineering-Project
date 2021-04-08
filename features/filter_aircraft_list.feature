@@ -14,8 +14,9 @@ Background: aircrafts have been added to database
     And I am on the home page
     Then 6 seed aircrafts should exist
 
-Scenario: restrict to aircraft with 'Fighter' or 'Bomber' or 'Attacker' roles
-    Given I check the following roles: Fighter, Bomber, Attacker
+Scenario: restrict to aircraft with 'Attacker' or 'Bomber' 'Fighter' roles
+    Given I check the following roles: Attacker, Bomber, Fighter
+    Given I uncheck the following roles: Dive-Bomber, Heavy-Bomber
     And I press "Refresh"
 
     Then I should see "Gloster Meteor"

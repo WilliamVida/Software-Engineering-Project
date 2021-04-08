@@ -94,7 +94,7 @@ The Heroku command-line interface is pre-installed in your Codio workspace. Here
 | Create new Heroku App | `heroku create` |
 | Deploy latest code to Heroku | `git push heroku master`|
 | Set up production DB schema on Heroku | `heroku run rake db:migrate`|
-| Seed production DB schema on Heroky | `heroku run rake db:seed`|
+| Seed production DB schema on Heroku | `heroku run rake db:seed`|
 
 ## Marking Scheme
 The project will be marked according to the following marking scheme:

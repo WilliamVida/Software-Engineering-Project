@@ -9,7 +9,9 @@ Then /(.*) seed aircrafts should exist/ do | n_seeds |
 end
 
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-    page.body.index(e1) > page.body.index(e2)
+#     expect(page.body.index(e1) < page.body.index(e2))
+    #page.body.index(e1) < page.body.index(e2)
+     page.body.index(e1).should < page.body.index(e2)
 end
 
 Then /I should see all the aircrafts/ do

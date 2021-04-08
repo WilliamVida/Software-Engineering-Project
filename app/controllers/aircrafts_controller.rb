@@ -4,21 +4,26 @@ class AircraftsController < ApplicationController
 
     # GET /aircrafts
     def index
+#          @selected_roles=@all_roles
         sort = params[:sort] || session[:sort]
 
         case sort
             when "name"
-            ordering, @name_header = {:name => :asc}, "bg-warning hilite"
+                ordering, @name_header = {:name => :asc}, "bg-warning hilite"
             when "role"
-            ordering, @role_header = {:role => :asc}, "bg-warning hilite"
+                ordering, @role_header = {:role => :asc}, "bg-warning hilite"
             when "country"
-            ordering, @country_header = {:country => :asc}, "bg-warning hilite"
+                ordering, @country_header = {:country => :asc}, "bg-warning hilite"
             when "year"
-            ordering, @year_header = {:year => :asc}, "bg-warning hilite"
+                ordering, @year_header = {:year => :asc}, "bg-warning hilite"
         end
-        
+
         @all_roles = Aircraft.all_roles
         @selected_roles = params[:roles] || session[:roles] || {}
+        
+        if @selected_roles == {}
+            @selected_roles = Hash[@all_roles.map {|roles| [roles, roles]}]
+        end
 
         if params[:sort] != session[:sort]
             session[:sort] = sort
@@ -26,9 +31,7 @@ class AircraftsController < ApplicationController
             redirect_to :sort => sort and return
         end
 
-#         @aircrafts = Aircraft.all.order(ordering)    
         @aircrafts = Aircraft.where(role: @selected_roles.keys).order(ordering)
-
     end
 
     # GET /aircrafts/1
