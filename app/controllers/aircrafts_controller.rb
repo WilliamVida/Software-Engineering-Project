@@ -4,7 +4,8 @@ class AircraftsController < ApplicationController
 
     # GET /aircrafts
     def index
-#          @selected_roles=@all_roles
+#         @selected_roles = @all_roles
+        @roles = @all_roles
         sort = params[:sort] || session[:sort]
 
         case sort

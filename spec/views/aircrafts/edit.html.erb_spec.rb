@@ -13,11 +13,11 @@ RSpec.describe "aircrafts/edit", type: :view do
   it "renders the edit aircraft form" do
     render
 
-    assert_select "form[action=?][method=?]", aircraft_path(@aircraft), "post" do
+      assert_select "form[action=?][method=?]", aircraft_path(@aircraft), "post" do
 
       assert_select "input#aircraft_name[name=?]", "aircraft[name]"
 
-      assert_select "input#aircraft_role[name=?]", "aircraft[role]"
+#       assert_select "input#aircraft_role[name=?]", "aircraft[role]"
 
       assert_select "input#aircraft_country[name=?]", "aircraft[country]"
 

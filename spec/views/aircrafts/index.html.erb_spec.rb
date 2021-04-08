@@ -5,13 +5,13 @@ RSpec.describe "aircrafts/index", type: :view do
     assign(:aircrafts, [
       Aircraft.create!(
         :name => "Name",
-        :role => "Role",
+        :role => "Fighter",
         :country => "Country",
         :year => "Year"
       ),
       Aircraft.create!(
         :name => "Name",
-        :role => "Role",
+        :role => "Fighter",
         :country => "Country",
         :year => "Year"
       )

@@ -25,117 +25,138 @@ require 'rails_helper'
 
 RSpec.describe AircraftsController, type: :controller do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Aircraft. As you add validations to Aircraft, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AircraftsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET #index" do
-    it "returns a success response" do
-      aircraft = Aircraft.create! valid_attributes
-      get :index, {}, valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #show" do
-    it "returns a success response" do
-      aircraft = Aircraft.create! valid_attributes
-      get :show, {:id => aircraft.to_param}, valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #new" do
-    it "returns a success response" do
-      get :new, {}, valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "GET #edit" do
-    it "returns a success response" do
-      aircraft = Aircraft.create! valid_attributes
-      get :edit, {:id => aircraft.to_param}, valid_session
-      expect(response).to be_success
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Aircraft" do
-        expect {
-          post :create, {:aircraft => valid_attributes}, valid_session
-        }.to change(Aircraft, :count).by(1)
-      end
-
-      it "redirects to the created aircraft" do
-        post :create, {:aircraft => valid_attributes}, valid_session
-        expect(response).to redirect_to(Aircraft.last)
-      end
-    end
-
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, {:aircraft => invalid_attributes}, valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
+    # This should return the minimal set of attributes required to create a valid
+    # Aircraft. As you add validations to Aircraft, be sure to
+    # adjust the attributes here as well.
+    let(:valid_attributes) {
         skip("Add a hash of attributes valid for your model")
-      }
+    }
 
-      it "updates the requested aircraft" do
-        aircraft = Aircraft.create! valid_attributes
-        put :update, {:id => aircraft.to_param, :aircraft => new_attributes}, valid_session
-        aircraft.reload
-        skip("Add assertions for updated state")
-      end
+    let(:invalid_attributes) {
+        skip("Add a hash of attributes invalid for your model")
+    }
 
-      it "redirects to the aircraft" do
-        aircraft = Aircraft.create! valid_attributes
-        put :update, {:id => aircraft.to_param, :aircraft => valid_attributes}, valid_session
-        expect(response).to redirect_to(aircraft)
-      end
+    # This should return the minimal set of values that should be in the session
+    # in order to pass any filters (e.g. authentication) defined in
+    # AircraftsController. Be sure to keep this updated too.
+    let(:valid_session) { {} }
+
+    describe "GET #index" do
+        it "returns a success response" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+            get :index, {}, valid_session
+            expect(response).to be_success
+        end
     end
 
-    context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
-        aircraft = Aircraft.create! valid_attributes
-        put :update, {:id => aircraft.to_param, :aircraft => invalid_attributes}, valid_session
-        expect(response).to be_success
-      end
-    end
-  end
-
-  describe "DELETE #destroy" do
-    it "destroys the requested aircraft" do
-      aircraft = Aircraft.create! valid_attributes
-      expect {
-        delete :destroy, {:id => aircraft.to_param}, valid_session
-      }.to change(Aircraft, :count).by(-1)
+    describe "GET #show" do
+        it "returns a success response" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+            get :show, {:id => aircraft1.to_param}, valid_session
+            expect(response).to be_success
+        end
     end
 
-    it "redirects to the aircrafts list" do
-      aircraft = Aircraft.create! valid_attributes
-      delete :destroy, {:id => aircraft.to_param}, valid_session
-      expect(response).to redirect_to(aircrafts_url)
+    describe "GET #new" do
+        it "returns a success response" do
+            get :new, {}, valid_session
+            expect(response).to be_success
+        end
     end
-  end
+
+    describe "GET #edit" do
+        it "returns a success response" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+            get :edit, {:id => aircraft1.to_param}, valid_session
+            expect(response).to be_success
+        end
+    end
+
+    describe "POST #create" do
+        new_aircraft = {:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany"}
+        context "with valid params" do
+            it "creates a new Aircraft" do
+                expect {
+                post :create, {:aircraft => new_aircraft}, valid_session
+                }.to change(Aircraft, :count).by(1)
+            end
+
+            it "redirects to the created aircraft" do
+                post :create, {:aircraft => new_aircraft}, valid_session
+                expect(response).to redirect_to(Aircraft.last)
+            end
+        end
+
+#         context "with invalid params" do
+#             it "returns a success response (i.e. to display the 'new' template)" do
+#                 post :create, {:aircraft => invalid_attributes}, valid_session
+#                 expect(response).to be_success
+#             end
+#         end
+    end
+
+    describe "PUT #update" do
+        context "with valid params" do
+            let(:new_attributes) {
+                skip("Add a hash of attributes valid for your model")
+            }
+
+            it "updates the requested aircraft" do
+                aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+                put :update, {:id => aircraft1.to_param, :aircraft => {:name => "New aircraft"}}, valid_session
+                aircraft1.reload
+                expect(aircraft1.name).to eq("New aircraft")
+            end
+
+            it "redirects to the aircraft" do
+                aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+                put :update, {:id => aircraft1.to_param, :aircraft => {:name => "New aircraft"}}, valid_session
+                expect(response).to redirect_to(aircraft1)
+            end
+        end
+    #     context "with invalid params" do
+    #       it "returns a success response (i.e. to display the 'edit' template)" do
+    #         aircraft = Aircraft.create! valid_attributes
+    #         put :update, {:id => aircraft.to_param, :aircraft => invalid_attributes}, valid_session
+    #         expect(response).to be_success
+    #       end
+    #     end
+    end
+
+    describe "DELETE #destroy" do
+        it "destroys the requested aircraft" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+            expect {
+            delete :destroy, {:id => aircraft1.to_param}, valid_session
+            }.to change(Aircraft, :count).by(-1)
+        end
+
+        it "redirects to the aircrafts list" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany")
+            delete :destroy, {:id => aircraft1.to_param}, valid_session
+            expect(response).to redirect_to(aircrafts_url)
+        end
+    end
+
+    describe "find aircraft by the same country" do
+        it "shows aircraft by the same country" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany", :year => "1937")
+            aircraft2 = Aircraft.create!(:name => "Hawker Hurricane", :role => "Fighter", :country => "United Kingdom", :year => "1937")
+            aircraft3 = Aircraft.create!(:name => "Messerschmitt Me 262", :role => "Fighter", :country => "Germany", :year => "1944")
+            get :same_country, {:id => aircraft1.to_param}
+            expect(assigns(:aircraft)).to include(aircraft1)
+            expect(assigns(:aircraft)).to include(aircraft3)
+            expect(assigns(:aircraft)).not_to include(aircraft2)
+        end
+
+        it "redirects if aircraft has no other country" do
+            aircraft1 = Aircraft.create!(:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany", :year => "1937")
+            aircraft2 = Aircraft.create!(:name => "Hawker Hurricane", :role => "Fighter", :country => "United Kingdom", :year => "1937")
+            aircraft3 = Aircraft.create!(:name => "Messerschmitt Me 262", :role => "Fighter", :country => "Germany", :year => "1944")
+            get :same_country, {:id => aircraft2.to_param}
+            expect(flash[:notice]).to eq("Aircraft 'Hawker Hurricane' has no country info.")
+            expect(response).to redirect_to(aircrafts_path)
+        end
+    end
 
 end
