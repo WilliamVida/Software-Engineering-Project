@@ -1,2 +1,2 @@
-# Project Descrption
-_Your project description paragraph here_
+# Project Description
+This Ruby on Rails contains an aircraft database. It allows the user to sort and filter through the available aircraft. The sorting can be done using any of the details of the aircraft including the name, role, country and year. The filtering is done through the roles of the available aircraft. The sorting and filtering can also be combined. Each aircraft has its own page which shows its details. Each of these pages contains a button that goes to a link that shows all of the aircraft from the country. If the aircraft has no other country then you redirecting to the home page. The application provides full CRUD (create, read, update and delete) operations for the aircraft. Tests are also implemented using both Cucumber and RSpec to confirm that the features of the application work.

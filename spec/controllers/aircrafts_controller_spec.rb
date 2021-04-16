@@ -47,6 +47,26 @@ RSpec.describe AircraftsController, type: :controller do
             get :index, {}, valid_session
             expect(response).to be_success
         end
+        
+        it "sorts by name" do
+            get :index, {:sort => "name"}, valid_session
+            expect(response).to redirect_to :sort => "name"
+        end
+        
+        it "sorts by role" do
+            get :index, {:sort => "role"}, valid_session
+            expect(response).to redirect_to :sort => "role"
+        end
+        
+        it "sorts by country" do
+            get :index, {:sort => "country"}, valid_session
+            expect(response).to redirect_to :sort => "country"
+        end
+        
+        it "sorts by year" do
+            get :index, {:sort => "year"}, valid_session
+            expect(response).to redirect_to :sort => "year"
+        end
     end
 
     describe "GET #show" do
@@ -74,6 +94,8 @@ RSpec.describe AircraftsController, type: :controller do
 
     describe "POST #create" do
         new_aircraft = {:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany"}
+        invalid_aircraft = {:name => "Messerschmitt Bf 109", :role => "Fighter", :country => "Germany", :year => "19oo"}
+
         context "with valid params" do
             it "creates a new Aircraft" do
                 expect {
@@ -87,12 +109,11 @@ RSpec.describe AircraftsController, type: :controller do
             end
         end
 
-#         context "with invalid params" do
-#             it "returns a success response (i.e. to display the 'new' template)" do
-#                 post :create, {:aircraft => invalid_attributes}, valid_session
-#                 expect(response).to be_success
-#             end
-#         end
+        context "with invalid params" do
+            it "does nothing" do
+                post :create, {:aircraft => invalid_aircraft}, valid_session
+            end
+        end
     end
 
     describe "PUT #update" do
@@ -114,13 +135,6 @@ RSpec.describe AircraftsController, type: :controller do
                 expect(response).to redirect_to(aircraft1)
             end
         end
-    #     context "with invalid params" do
-    #       it "returns a success response (i.e. to display the 'edit' template)" do
-    #         aircraft = Aircraft.create! valid_attributes
-    #         put :update, {:id => aircraft.to_param, :aircraft => invalid_attributes}, valid_session
-    #         expect(response).to be_success
-    #       end
-    #     end
     end
 
     describe "DELETE #destroy" do
